@@ -1,6 +1,6 @@
 # Como rodar o servidor
-Se necessário instalar o live-server: npm install -g live-server
-Então iniciar o live server com o comando: live-server
+- Se necessário instalar o live-server: npm install -g live-server
+- Então iniciar o live server com o comando: live-server
 
 # Desafio Front-end Delfosim
 > Desafio para ingressar como Front-end Developer na Delfosim em Fortaleza-CE
