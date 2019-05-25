@@ -10,12 +10,11 @@ function getWidget(id) {
                         '</button>'+
                         '<div class="dropdown-menu  dropdown-menu-left" aria-labelledby="moreOptions">'+
                             '<button class="dropdown-item" type="button">Edit</button>'+
-                            '<button class="dropdown-item" type="button">Delete</button>'+
+                            '<button class="dropdown-item" type="button" onclick="deleteWidget(\''+id+'\')">Delete</button>'+
                         '</div>'+
                     '</div>'+
             '</div>'+
             '<div class="card-body" id="'+ id + '">'+
-                
             '</div>'+
         '</div>'
 }

@@ -34,7 +34,7 @@ function fetchWidgets() {
     }*/
 }
 
-function createWidget () {
+function createWidget() {
     var widgetId = chance.guid();
     var widgetData = getRandomData();
 
@@ -54,9 +54,22 @@ function createWidget () {
     }
 
     fetchWidgets();
-  }
+}
 
-function getRandomData () {
+function deleteWidget(id){
+    var widgets = JSON.parse(localStorage.getItem(myConstants.widgetsLocalStorage));
+
+    for(let i = 0; i < widgets.length; i++) {
+      if(widgets[i].id == id) {
+        widgets.splice(i, 1);
+      }
+    }
+
+    localStorage.setItem(myConstants.widgetsLocalStorage, JSON.stringify(widgets));
+    fetchWidgets();
+}
+
+function getRandomData() {
     let data = [];
 
     for(let i = 0; i < 6 ; i++) {
