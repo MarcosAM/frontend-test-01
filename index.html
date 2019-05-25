@@ -15,7 +15,7 @@
     <title>Delfos Intelligent Maintenance</title>
   </head>
 
-  <body onload="fetchWidgets()">
+  <body onload="initialize()">
     <header>
         <nav class="navbar nav-fill">
             <a class="navbar-brand" href="#">
@@ -37,7 +37,7 @@
 
         <div>
             <span class="btn-group-sm fixed-bottom">
-                <button type="button" class="btn btn-primary bmd-btn-fab float-right m-5">
+                <button type="button" class="btn btn-primary bmd-btn-fab float-right m-5" onclick="createWidget()">
                     <i class="material-icons">add</i>
                 </button>
             </span>
