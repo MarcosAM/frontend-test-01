@@ -15,7 +15,7 @@
     <title>Delfos Intelligent Maintenance</title>
   </head>
 
-  <body>
+  <body onload="fetchWidgets()">
     <header>
         <nav class="navbar nav-fill">
             <a class="navbar-brand" href="#">
@@ -31,26 +31,12 @@
     <div class="container">
         <div class="col-lg-12">
             <div class="card mt-4">
-                <div class="d-flex justify-content-between card-header">
-                    <p class="align-self-center mb-0" >Widget ID</p>
-                    <div class="btn-group">
-                        <button id="moreOptions" class="btn bmd-btn-icon dropdown-toggle"
-                        type="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                            <i class="material-icons">more_vert</i>
-                        </button>
-                        <div class="dropdown-menu  dropdown-menu-left" aria-labelledby="moreOptions">
-                            <button class="dropdown-item" type="button">Edit</button>
-                            <button class="dropdown-item" type="button">Delete</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <canvas id="lineChart"></canvas>
+                <div id="widgetList">
+                    <!-- Widgets go here! -->
                 </div>
             </div>
         </div>
-        
+
         <div>
             <span class="btn-group-sm fixed-bottom">
                 <button type="button" class="btn btn-primary bmd-btn-fab float-right m-5">
@@ -60,7 +46,11 @@
         </div>
     </div>
 
+    <!-- SCRIPTS -->
+    <!-- MAIN -->
+    <script src="/main.js"></script>
 
+    <!-- CHART -->
     <script type="text/javascript" src="js/jquery-3.4.0.min.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
@@ -89,6 +79,7 @@
             });
           
     </script>
+    <!-- SCRIPTS -->
   </body>
 
 </html>
