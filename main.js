@@ -1,37 +1,35 @@
 function initialize() {
     myConstants.widgetsLocalStorage = "Teste1"
+    document.getElementById('searchInput').addEventListener('change', searchWidgets);
     fetchWidgets();
 }
 
-function fetchWidgets() {
+function fetchWidgets(filter) {
     var widgets = JSON.parse(localStorage.getItem(myConstants.widgetsLocalStorage));
     var widgetList = document.getElementById('widgetList');
 
     widgetList.innerHTML = '';
 
     if(widgets != null) {
-        for (let i = 0; i < widgets.length; i++) {
-            widgetList.innerHTML += getWidget(widgets[i].id);
+        let filteredWidgets = [];
+        if(filter != null) {
+            for (let i = 0; i < widgets.length; i++) {
+                if(widgets[i].id.includes(filter)) {
+                  filteredWidgets.push(widgets[i]);
+                }
+            }
+        } else {
+            filteredWidgets = widgets;
         }
 
-        for (let i = 0; i < widgets.length; i++) {
-            document.getElementById(widgets[i].id).appendChild(getChart(widgets[i].data))
+        for (let i = 0; i < filteredWidgets.length; i++) {
+            widgetList.innerHTML += getWidget(filteredWidgets[i].id);
+        }
+
+        for (let i = 0; i < filteredWidgets.length; i++) {
+            document.getElementById(filteredWidgets[i].id).appendChild(getChart(filteredWidgets[i].data))
         }
     }
-
-    /*
-    let ids = [];
-    for (let i = 0; i < 6; i++){
-        ids.push(chance.guid());
-    }
-
-    for (let i = 0; i < ids.length; i++){
-        widgetList.innerHTML += getWidget(ids[i]);
-    }
-
-    for (let i = 0; i < ids.length; i++){
-        document.getElementById(ids[i]).appendChild(getChart(getRandomData()));
-    }*/
 }
 
 function createWidget() {
@@ -81,6 +79,18 @@ function deleteWidget(id){
     localStorage.setItem(myConstants.widgetsLocalStorage, JSON.stringify(widgets));
     fetchWidgets();
 }
+
+function searchWidgets (e) {
+    var usersSearch = e.srcElement.value;
+
+    e.preventDefault();
+
+    if(usersSearch.length === 0 || !usersSearch.trim()){
+      fetchWidgets();
+    } else {
+      fetchWidgets(usersSearch);
+    }
+  }
 
 function getRandomData() {
     let data = [];
