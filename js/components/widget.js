@@ -9,7 +9,7 @@ function getWidget(id) {
                             '<i class="material-icons">more_vert</i>'+
                         '</button>'+
                         '<div class="dropdown-menu  dropdown-menu-left" aria-labelledby="moreOptions">'+
-                            '<button class="dropdown-item" type="button">Edit</button>'+
+                            '<button class="dropdown-item" type="button" onclick="editWidget(\''+id+'\')">Edit</button>'+
                             '<button class="dropdown-item" type="button" onclick="deleteWidget(\''+id+'\')">Delete</button>'+
                         '</div>'+
                     '</div>'+

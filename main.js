@@ -56,6 +56,19 @@ function createWidget() {
     fetchWidgets();
 }
 
+function editWidget (id) {
+    var widgets = JSON.parse(localStorage.getItem(myConstants.widgetsLocalStorage));
+
+    for(var i = 0; i < widgets.length; i++) {
+      if(widgets[i].id == id) {
+        widgets[i].data = getRandomData();
+      }
+    }
+
+    localStorage.setItem(myConstants.widgetsLocalStorage, JSON.stringify(widgets));
+    fetchWidgets();
+  }
+
 function deleteWidget(id){
     var widgets = JSON.parse(localStorage.getItem(myConstants.widgetsLocalStorage));
 
