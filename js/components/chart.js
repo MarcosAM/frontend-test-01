@@ -1,4 +1,4 @@
-function getChart(){
+function getChart(data){
     var canvas = document.createElement('canvas');
     var ctxL = canvas.getContext('2d');
     var myLineChart = new Chart(ctxL, {
@@ -7,7 +7,7 @@ function getChart(){
         labels: ["January", "February", "March", "April", "May", "June", "July"],
         datasets: [{
             label: "My dataset",
-            data: [65, 59, 80, 81, 56, 55, 40],
+            data: data,
             backgroundColor: [
               'rgba(255, 255, 255,0)',
             ],

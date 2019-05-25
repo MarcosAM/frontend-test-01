@@ -1,7 +1,7 @@
-function getWidget() {
+function getWidget(id) {
     return'<div class="card mt-4">'+
             '<div class="d-flex justify-content-between card-header">'+
-                '<p class="align-self-center mb-0" >Widget ID</p>'+
+                '<p class="align-self-center mb-0" >' + id + '</p>'+
                     '<div class="btn-group">'+
                         '<button id="moreOptions" class="btn bmd-btn-icon dropdown-toggle"'+
                         'type="button" data-toggle="dropdown"'+
@@ -14,8 +14,8 @@ function getWidget() {
                         '</div>'+
                     '</div>'+
             '</div>'+
-            '<div class="card-body">'+
-                '<canvas id="lineChart"></canvas>'+
+            '<div class="card-body" id="'+ id + '">'+
+                
             '</div>'+
         '</div>'
 }
