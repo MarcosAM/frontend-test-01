@@ -1,4 +1,4 @@
-function getChart(data){
+const getChart = (data) => {
     var canvas = document.createElement('canvas');
     var ctxL = canvas.getContext('2d');
     var myLineChart = new Chart(ctxL, {

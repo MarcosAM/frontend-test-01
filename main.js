@@ -1,11 +1,13 @@
-function initialize() {
-    myConstants.widgetsLocalStorage = "Teste1"
-    document.getElementById('searchInput').addEventListener('change', searchWidgets);
-    fetchWidgets();
+const widgetsLocalStorage = 'Teste1'
+
+const initialize = () => {
+    //document.getElementById('searchInput').addEventListener('change', searchWidgets);
+    //fetchWidgets();
+    document.getElementById('widgetList').append(widget({id: 'lolTeste'}))
 }
 
-function fetchWidgets(filter) {
-    var widgets = JSON.parse(localStorage.getItem(myConstants.widgetsLocalStorage));
+const fetchWidgets = (filter) => {
+    var widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
     var widgetList = document.getElementById('widgetList');
 
     widgetList.innerHTML = '';
@@ -32,7 +34,7 @@ function fetchWidgets(filter) {
     }
 }
 
-function createWidget() {
+const createWidget = () => {
     var widgetId = chance.guid();
     var widgetData = getRandomData();
 
@@ -41,21 +43,21 @@ function createWidget() {
       data: widgetData
     }
 
-    if(localStorage.getItem(myConstants.widgetsLocalStorage) === null ) {
+    if(localStorage.getItem(widgetsLocalStorage) === null ) {
       var widgets = [];
       widgets.push(widget);
-      localStorage.setItem(myConstants.widgetsLocalStorage, JSON.stringify(widgets));
+      localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets));
     } else {
-      var widgets = JSON.parse(localStorage.getItem(myConstants.widgetsLocalStorage));
+      var widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
       widgets.push(widget);
-      localStorage.setItem(myConstants.widgetsLocalStorage, JSON.stringify(widgets));
+      localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets));
     }
 
     fetchWidgets();
 }
 
-function editWidget (id) {
-    var widgets = JSON.parse(localStorage.getItem(myConstants.widgetsLocalStorage));
+const editWidget = (id) => {
+    var widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
 
     for(var i = 0; i < widgets.length; i++) {
       if(widgets[i].id == id) {
@@ -63,12 +65,12 @@ function editWidget (id) {
       }
     }
 
-    localStorage.setItem(myConstants.widgetsLocalStorage, JSON.stringify(widgets));
+    localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets));
     fetchWidgets();
   }
 
-function deleteWidget(id){
-    var widgets = JSON.parse(localStorage.getItem(myConstants.widgetsLocalStorage));
+const deleteWidget = (id) => {
+    var widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
 
     for(let i = 0; i < widgets.length; i++) {
       if(widgets[i].id == id) {
@@ -76,11 +78,11 @@ function deleteWidget(id){
       }
     }
 
-    localStorage.setItem(myConstants.widgetsLocalStorage, JSON.stringify(widgets));
+    localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets));
     fetchWidgets();
 }
 
-function searchWidgets (e) {
+const searchWidgets = (e) => {
     var usersSearch = e.srcElement.value;
 
     e.preventDefault();
@@ -92,7 +94,7 @@ function searchWidgets (e) {
     }
   }
 
-function getRandomData() {
+const getRandomData = () => {
     let data = [];
 
     for(let i = 0; i < 6 ; i++) {
