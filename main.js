@@ -45,7 +45,10 @@ const createWidget = () => {
 }
 
 const editWidget = (id) => {
-  var widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
+
+  getWidget({id})
+  
+  /*var widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
 
   for (var i = 0; i < widgets.length; i++) {
     if (widgets[i].id == id) {
@@ -54,7 +57,7 @@ const editWidget = (id) => {
   }
 
   localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets));
-  fetchWidgets();
+  fetchWidgets();*/
 }
 
 const deleteWidget = (id) => {
