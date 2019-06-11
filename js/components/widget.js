@@ -1,4 +1,4 @@
-function getWidget(id) {
+/*function getWidget(id) {
     return'<div class="card mt-4">'+
             '<div class="d-flex justify-content-between card-header">'+
                 '<p class="align-self-center mb-0" >' + id + '</p>'+
@@ -17,9 +17,9 @@ function getWidget(id) {
             '<div class="card-body" id="'+ id + '">'+
             '</div>'+
         '</div>'
-}
+}*/
 
-const widget = ({id}) => {
+const getWidget = ({id, data}) => {
     const card = document.createElement('div')
     const header = document.createElement('div')
     const headerTitle = document.createElement('p')
@@ -51,7 +51,7 @@ const widget = ({id}) => {
     dropdownMenu.append(btnEdit)
     dropdownMenu.append(btnDelete)
     card.append(body)
-    body.append(getChart([50,60,70,80,90, 30]))
+    body.append(getChart(data))
 
     headerTitle.textContent = id
 
@@ -68,11 +68,15 @@ const widget = ({id}) => {
     btnEdit.classList.add('dropdown-item')
     btnEdit.textContent = 'Edit'
     btnEdit.setAttribute('type', 'button')
+    btnEdit.onclick = () => editWidget(id)
+    //btnEdit.setAttribute('onclick',`editWidget(${id})`)
 
     btnDelete.classList.add('dropdown-item')
     btnDelete.textContent = 'Delete'
     btnDelete.setAttribute('type', 'button')
-    
+    //btnDelete.setAttribute('onclick',`deleteWidget(${id})`)
+    btnDelete.onclick = () => deleteWidget(id)
+
     body.classList.add('card-body')
     body.id = id
 
