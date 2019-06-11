@@ -31,37 +31,17 @@ const createWidget = () => {
     id: chance.guid(),
     data: getRandomData()
   }
-  
+
   document.getElementById('widgetList').append(getWidget(widget))
 
   if (localStorage.getItem(widgetsLocalStorage)) {
-    const widgets = [widget];
-    localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets));
-  } else {
     const widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
     const newWidgets = [...widgets, widget];
     localStorage.setItem(widgetsLocalStorage, JSON.stringify(newWidgets));
-  }
-
-  /*var widgetId = chance.guid();
-  var widgetData = getRandomData();
-
-  var widget = {
-    id: widgetId,
-    data: widgetData
-  }
-
-  if (localStorage.getItem(widgetsLocalStorage) === null) {
-    var widgets = [];
-    widgets.push(widget);
-    localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets));
   } else {
-    var widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
-    widgets.push(widget);
+    const widgets = [widget];
     localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets));
   }
-
-  fetchWidgets();*/
 }
 
 const editWidget = (id) => {
@@ -78,16 +58,14 @@ const editWidget = (id) => {
 }
 
 const deleteWidget = (id) => {
-  var widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
 
-  for (let i = 0; i < widgets.length; i++) {
-    if (widgets[i].id == id) {
-      widgets.splice(i, 1);
-    }
-  }
+  document.getElementById(id).parentNode.removeChild(document.getElementById(id))
 
-  localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets));
-  fetchWidgets();
+  const widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage))
+
+  const newWidgets = widgets.filter((widget) => widget.id !== id)
+
+  localStorage.setItem(widgetsLocalStorage, JSON.stringify(newWidgets))
 }
 
 const searchWidgets = (e) => {

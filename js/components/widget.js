@@ -53,6 +53,8 @@ const getWidget = ({id, data}) => {
     card.append(body)
     body.append(getChart(data))
 
+    card.id = id
+
     headerTitle.textContent = id
 
     btnDropdown.id = 'moreOptions'
@@ -69,16 +71,13 @@ const getWidget = ({id, data}) => {
     btnEdit.textContent = 'Edit'
     btnEdit.setAttribute('type', 'button')
     btnEdit.onclick = () => editWidget(id)
-    //btnEdit.setAttribute('onclick',`editWidget(${id})`)
 
     btnDelete.classList.add('dropdown-item')
     btnDelete.textContent = 'Delete'
     btnDelete.setAttribute('type', 'button')
-    //btnDelete.setAttribute('onclick',`deleteWidget(${id})`)
     btnDelete.onclick = () => deleteWidget(id)
 
     body.classList.add('card-body')
-    body.id = id
 
     return card
 }
