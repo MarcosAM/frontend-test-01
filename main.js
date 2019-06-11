@@ -45,34 +45,38 @@ const createWidget = () => {
 }
 
 const editWidget = (id) => {
-
-  getWidget({id})
-  
-  /*var widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
-
-  for (var i = 0; i < widgets.length; i++) {
-    if (widgets[i].id == id) {
-      widgets[i].data = getRandomData();
-    }
-  }
-
-  localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets));
-  fetchWidgets();*/
+  getWidget({ id })
 }
 
 const deleteWidget = (id) => {
-
   document.getElementById(id).parentNode.removeChild(document.getElementById(id))
-
   const widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage))
-
   const newWidgets = widgets.filter((widget) => widget.id !== id)
-
   localStorage.setItem(widgetsLocalStorage, JSON.stringify(newWidgets))
 }
 
 const searchWidgets = (e) => {
-  var usersSearch = e.srcElement.value;
+  const usersSearch = e.srcElement.value
+  e.preventDefault()
+
+  if (e) {
+    const cardsCollection = document.getElementsByClassName('card')
+    const cards = [...cardsCollection]
+    console.log(cardsCollection)
+    console.log(cards)
+    cards.forEach(card => {
+      if (card.id.includes(usersSearch)) {
+        card.style.display = 'none'
+        console.log('Some')
+      } else {
+        card.style.display = 'visible'
+        console.log('Aparece')
+      }
+      console.log(card.id.includes)
+    })
+  }
+
+  /*var usersSearch = e.srcElement.value;
 
   e.preventDefault();
 
@@ -80,7 +84,7 @@ const searchWidgets = (e) => {
     fetchWidgets();
   } else {
     fetchWidgets(usersSearch);
-  }
+  }*/
 }
 
 const getRandomData = () => {
