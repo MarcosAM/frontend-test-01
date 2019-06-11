@@ -3,6 +3,7 @@ const widgetsLocalStorage = 'Teste1'
 const initialize = () => {
     //document.getElementById('searchInput').addEventListener('change', searchWidgets);
     //fetchWidgets();
+    //TODO testar isso aqui!
     document.getElementById('widgetList').append(widget({id: 'lolTeste'}))
 }
 
