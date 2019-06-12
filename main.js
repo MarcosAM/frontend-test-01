@@ -59,32 +59,25 @@ const searchWidgets = (e) => {
   const usersSearch = e.srcElement.value
   e.preventDefault()
 
-  if (e) {
-    const cardsCollection = document.getElementsByClassName('card')
-    const cards = [...cardsCollection]
-    console.log(cardsCollection)
-    console.log(cards)
+  const cardsCollection = document.getElementsByClassName('card')
+  const cards = [...cardsCollection]
+
+  console.log(cards[0].style.display)
+
+  if (usersSearch !== '') {
     cards.forEach(card => {
       if (card.id.includes(usersSearch)) {
-        card.style.display = 'none'
-        console.log('Some')
+        card.style.display = 'block'
       } else {
-        card.style.display = 'visible'
-        console.log('Aparece')
+        card.style.display = 'none'
       }
-      console.log(card.id.includes)
+    })
+  } else {
+    console.log(cards.length)
+    cards.forEach(card => {
+      card.style.display = 'block'
     })
   }
-
-  /*var usersSearch = e.srcElement.value;
-
-  e.preventDefault();
-
-  if (usersSearch.length === 0 || !usersSearch.trim()) {
-    fetchWidgets();
-  } else {
-    fetchWidgets(usersSearch);
-  }*/
 }
 
 const getRandomData = () => {
@@ -96,5 +89,3 @@ const getRandomData = () => {
 
   return data;
 }
-
-function myConstants() { }
