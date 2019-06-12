@@ -38,10 +38,7 @@ const editWidget = (id) => {
 
 const deleteWidget = (id) => {
   document.getElementById(id).parentNode.removeChild(document.getElementById(id))
-  //TODO deixar isso com o localStorageManager
-  const widgets = getWidgetsLocalStorage()
-  const newWidgets = widgets.filter((widget) => widget.id !== id)
-  updateWidgetsLocalStorage(newWidgets)
+  removeWidgetFromLocalStorage(id)
 }
 
 const searchWidgets = (e) => {

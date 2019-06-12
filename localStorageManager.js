@@ -2,7 +2,6 @@ const widgetsLocalStorage = 'Teste1'
 
 const getWidgetsLocalStorage = () => {
     const widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage))
-    //TODO testar se tiver vazio vai funcionar
     if (widgets) {
         return widgets
     }
@@ -16,6 +15,10 @@ const addWidgetToLocalStorage = (widget) => {
 const updateWidget = (editedWidget) => {
     const newWidgets = getWidgetsLocalStorage().map(widget => (widget.id === editedWidget.id ? editedWidget : widget))
     updateWidgetsLocalStorage(newWidgets)
+}
+
+const removeWidgetFromLocalStorage = (id) => {
+    updateWidgetsLocalStorage(getWidgetsLocalStorage().filter((widget) => widget.id !== id))
 }
 
 const updateWidgetsLocalStorage = (widgets) => {
