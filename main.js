@@ -6,8 +6,8 @@ const initialize = () => {
 }
 
 const fetchWidgets = () => {
-  var widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
-  var widgetList = document.getElementById('widgetList');
+  const widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
+  const widgetList = document.getElementById('widgetList');
 
   if (widgets) {
     widgets.forEach(widget => { widgetList.append(getWidget(widget)) })
