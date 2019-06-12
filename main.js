@@ -5,23 +5,12 @@ const initialize = () => {
   fetchWidgets();
 }
 
-const fetchWidgets = (filter) => {
+const fetchWidgets = () => {
   var widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
   var widgetList = document.getElementById('widgetList');
 
-  if (widgets != null) {
-    let filteredWidgets = [];
-    if (filter != null) {
-      for (let i = 0; i < widgets.length; i++) {
-        if (widgets[i].id.includes(filter)) {
-          filteredWidgets.push(widgets[i]);
-        }
-      }
-    } else {
-      filteredWidgets = widgets;
-    }
-
-    filteredWidgets.forEach(w => { widgetList.append(getWidget(w)) })
+  if (widgets) {
+    widgets.forEach(widget => { widgetList.append(getWidget(widget)) })
   }
 }
 
@@ -61,8 +50,6 @@ const searchWidgets = (e) => {
 
   const cardsCollection = document.getElementsByClassName('card')
   const cards = [...cardsCollection]
-
-  console.log(cards[0].style.display)
 
   if (usersSearch !== '') {
     cards.forEach(card => {
