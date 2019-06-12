@@ -1,10 +1,12 @@
-const getWidget = ({ id, data }) => {
+const getWidget = ({ id, data, btns }) => {
 
     if (document.getElementById(id)) {
         const body = document.getElementById(id).getElementsByClassName('card-body')[0]
         const canvas = body.getElementsByTagName('canvas')[0]
+        //TODO deixar para o widget só receber data, não gerar ele mesmo
         const newData = getRandomData()
         body.replaceChild(getChart(newData), canvas)
+        //TODO desvicular isso aqui com a lógica do local storage
         updateWidget({ id, data: newData })
     } else {
         const card = document.createElement('div')
@@ -35,8 +37,8 @@ const getWidget = ({ id, data }) => {
         btnGroup.append(btnDropdown)
         btnDropdown.append(btnDropdownIcon)
         btnGroup.append(dropdownMenu)
-        dropdownMenu.append(btnEdit)
-        dropdownMenu.append(btnDelete)
+        //dropdownMenu.append(btnEdit)
+        //dropdownMenu.append(btnDelete)
         card.append(body)
         body.append(getChart(data))
 
@@ -53,19 +55,21 @@ const getWidget = ({ id, data }) => {
         btnDropdownIcon.textContent = 'more_vert'
 
         dropdownMenu.setAttribute('aria-labelledby', 'moreOptions')
-
-        btnEdit.classList.add('dropdown-item')
-        btnEdit.textContent = 'Edit'
-        btnEdit.setAttribute('type', 'button')
-        btnEdit.onclick = () => editWidget(id)
-
-        btnDelete.classList.add('dropdown-item')
-        btnDelete.textContent = 'Delete'
-        btnDelete.setAttribute('type', 'button')
-        btnDelete.onclick = () => deleteWidget(id)
+        dropdownMenu.append(dropdownItem({ text: 'Edit', fun: () => editWidget(id) }))
+        dropdownMenu.append(dropdownItem({ text: 'Delete', fun: () => deleteWidget(id) }))
 
         body.classList.add('card-body')
 
         return card
     }
+}
+
+const dropdownItem = ({ text, fun }) => {
+    const item = document.createElement('button')
+    item.classList.add('dropdown-item')
+    item.textContent = text
+    item.setAttribute('type', 'button')
+    item.onclick = fun
+
+    return item
 }
