@@ -13,23 +13,16 @@ const fetchWidgets = () => {
 }
 
 const createWidget = () => {
-  const widget = {
+  const widgetData = {
     id: chance.guid(),
     data: getRandomData()
   }
 
-  widgetElement = getWidget(widget)
-  document.getElementById('widgetList').append(widgetElement)
-  window.scrollBy(0, widgetElement.getBoundingClientRect().y + widgetElement.clientHeight)
+  widget = getWidget(widgetData)
+  document.getElementById('widgetList').append(widget)
+  window.scrollBy(0, widget.getBoundingClientRect().y + widget.clientHeight)
 
-  if (localStorage.getItem(widgetsLocalStorage)) {
-    const widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
-    const newWidgets = [...widgets, widget];
-    updateWidgetsLocalStorage(newWidgets)
-  } else {
-    const widgets = [widget];
-    updateWidgetsLocalStorage(widgets)
-  }
+  addWidgetToLocalStorage(widgetData)
 }
 
 const editWidget = (id) => {
