@@ -1,3 +1,8 @@
+const standarDropdownBtns = ({ id }) => ([
+  { text: 'Edit', fun: () => editWidget(id) },
+  { text: 'Delete', fun: () => deleteWidget(id) }
+])
+
 const initialize = () => {
   document.getElementById('searchInput').addEventListener('change', searchWidgets)
   fetchWidgets();
@@ -8,7 +13,9 @@ const fetchWidgets = () => {
   const widgetList = document.getElementById('widgetList')
 
   if (widgets) {
-    widgets.forEach(widget => { widgetList.append(getWidget(widget)) })
+    widgets.forEach(widget => {
+      widgetList.append(getWidget({ ...widget, btns: standarDropdownBtns(widget) }))
+    })
   }
 }
 
@@ -18,7 +25,7 @@ const createWidget = () => {
     data: getRandomData()
   }
 
-  widget = getWidget(widgetData)
+  widget = getWidget({ ...widgetData, btns: standarDropdownBtns(widgetData) })
   document.getElementById('widgetList').append(widget)
   window.scrollBy(0, widget.getBoundingClientRect().y + widget.clientHeight)
 

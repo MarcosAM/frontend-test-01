@@ -12,7 +12,7 @@ const getWidget = ({ id, data, btns }) => {
         const card = document.createElement('div')
         const header = document.createElement('div')
         const headerTitle = document.createElement('p')
-        const btnGroup = dropdownOptions([{ text: 'Edit', fun: () => editWidget(id) }, { text: 'Delete', fun: () => deleteWidget(id) }])
+        const btnGroup = dropdownOptions(btns)
         const body = document.createElement('div')
 
         card.classList.add('card', 'mt-4')
