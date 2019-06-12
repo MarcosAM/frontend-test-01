@@ -31,7 +31,8 @@ const editWidget = (id) => {
 
 const deleteWidget = (id) => {
   document.getElementById(id).parentNode.removeChild(document.getElementById(id))
-  const widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage))
+  //TODO deixar isso com o localStorageManager
+  const widgets = getWidgetsLocalStorage()
   const newWidgets = widgets.filter((widget) => widget.id !== id)
   updateWidgetsLocalStorage(newWidgets)
 }
@@ -40,8 +41,7 @@ const searchWidgets = (e) => {
   const usersSearch = e.srcElement.value
   e.preventDefault()
 
-  const cardsCollection = document.getElementsByClassName('card')
-  const cards = [...cardsCollection]
+  const cards = [...document.getElementsByClassName('card')]
 
   if (usersSearch !== '') {
     cards.forEach(card => {
@@ -52,7 +52,6 @@ const searchWidgets = (e) => {
       }
     })
   } else {
-    console.log(cards.length)
     cards.forEach(card => {
       card.style.display = 'block'
     })
@@ -60,7 +59,7 @@ const searchWidgets = (e) => {
 }
 
 const getRandomData = () => {
-  let data = [];
+  let data = []
 
   for (let i = 0; i < 6; i++) {
     data.push(Math.random() * (80 - 40) + 40)

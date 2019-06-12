@@ -3,7 +3,9 @@ const getWidget = ({ id, data }) => {
     if (document.getElementById(id)) {
         const body = document.getElementById(id).getElementsByClassName('card-body')[0]
         const canvas = body.getElementsByTagName('canvas')[0]
-        body.replaceChild(getChart(getRandomData()), canvas)
+        const newData = getRandomData()
+        body.replaceChild(getChart(newData), canvas)
+        updateWidget({ id, data: newData })
     } else {
         const card = document.createElement('div')
         const header = document.createElement('div')

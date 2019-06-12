@@ -7,14 +7,19 @@ const addWidgetToLocalStorage = (widget) => {
         const widgets = getWidgetsLocalStorage()
         const newWidgets = [...widgets, widget];
         updateWidgetsLocalStorage(newWidgets)
-      } else {
+    } else {
         const widgets = [widget];
         updateWidgetsLocalStorage(widgets)
-      }
+    }
+}
+
+const updateWidget = (editedWidget) => {
+    const newWidgets = getWidgetsLocalStorage().map(widget => (widget.id === editedWidget.id ? editedWidget : widget))
+    updateWidgetsLocalStorage(newWidgets)
 }
 
 const updateWidgetsLocalStorage = (widgets) => {
     if (Array.isArray(widgets)) {
         localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets))
     }
-  }
+}  
