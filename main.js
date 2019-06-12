@@ -1,13 +1,11 @@
-const widgetsLocalStorage = 'Teste1'
-
 const initialize = () => {
-  document.getElementById('searchInput').addEventListener('change', searchWidgets);
+  document.getElementById('searchInput').addEventListener('change', searchWidgets)
   fetchWidgets();
 }
 
 const fetchWidgets = () => {
-  const widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
-  const widgetList = document.getElementById('widgetList');
+  const widgets = getWidgetsLocalStorage()
+  const widgetList = document.getElementById('widgetList')
 
   if (widgets) {
     widgets.forEach(widget => { widgetList.append(getWidget(widget)) })
@@ -71,14 +69,8 @@ const getRandomData = () => {
   let data = [];
 
   for (let i = 0; i < 6; i++) {
-    data.push(Math.random() * (80 - 40) + 40);
+    data.push(Math.random() * (80 - 40) + 40)
   }
 
   return data;
-}
-
-const updateWidgetsLocalStorage = (widgets) => {
-  if (Array.isArray(widgets)) {
-    localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets))
-  }
 }
