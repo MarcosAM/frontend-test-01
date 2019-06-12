@@ -15,7 +15,6 @@ const fetchWidgets = () => {
 }
 
 const createWidget = () => {
-
   const widget = {
     id: chance.guid(),
     data: getRandomData()
@@ -26,10 +25,10 @@ const createWidget = () => {
   if (localStorage.getItem(widgetsLocalStorage)) {
     const widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
     const newWidgets = [...widgets, widget];
-    localStorage.setItem(widgetsLocalStorage, JSON.stringify(newWidgets));
+    updateWidgetsLocalStorage(newWidgets)
   } else {
     const widgets = [widget];
-    localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets));
+    updateWidgetsLocalStorage(widgets)
   }
 }
 
@@ -41,7 +40,8 @@ const deleteWidget = (id) => {
   document.getElementById(id).parentNode.removeChild(document.getElementById(id))
   const widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage))
   const newWidgets = widgets.filter((widget) => widget.id !== id)
-  localStorage.setItem(widgetsLocalStorage, JSON.stringify(newWidgets))
+  console.log(newWidgets.length)
+  updateWidgetsLocalStorage(newWidgets)
 }
 
 const searchWidgets = (e) => {
@@ -75,4 +75,10 @@ const getRandomData = () => {
   }
 
   return data;
+}
+
+const updateWidgetsLocalStorage = (widgets) => {
+  if (Array.isArray(widgets)) {
+    localStorage.setItem(widgetsLocalStorage, JSON.stringify(widgets))
+  }
 }
