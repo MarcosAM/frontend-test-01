@@ -18,7 +18,9 @@ const createWidget = () => {
     data: getRandomData()
   }
 
-  document.getElementById('widgetList').append(getWidget(widget))
+  widgetElement = getWidget(widget)
+  document.getElementById('widgetList').append(widgetElement)
+  window.scrollBy(0, widgetElement.getBoundingClientRect().y + widgetElement.clientHeight)
 
   if (localStorage.getItem(widgetsLocalStorage)) {
     const widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage));
@@ -38,7 +40,6 @@ const deleteWidget = (id) => {
   document.getElementById(id).parentNode.removeChild(document.getElementById(id))
   const widgets = JSON.parse(localStorage.getItem(widgetsLocalStorage))
   const newWidgets = widgets.filter((widget) => widget.id !== id)
-  console.log(newWidgets.length)
   updateWidgetsLocalStorage(newWidgets)
 }
 
