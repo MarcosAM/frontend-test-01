@@ -33,7 +33,7 @@ const createWidget = () => {
 }
 
 const editWidget = (id) => {
-  getWidget({ id })
+  getWidget({ id, data: getRandomData() })
 }
 
 const deleteWidget = (id) => {

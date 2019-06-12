@@ -3,11 +3,9 @@ const getWidget = ({ id, data, btns }) => {
     if (document.getElementById(id)) {
         const body = document.getElementById(id).getElementsByClassName('card-body')[0]
         const canvas = body.getElementsByTagName('canvas')[0]
-        //TODO deixar para o widget só receber data, não gerar ele mesmo
-        const newData = getRandomData()
-        body.replaceChild(getChart(newData), canvas)
+        body.replaceChild(getChart(data), canvas)
         //TODO desvicular isso aqui com a lógica do local storage
-        updateWidget({ id, data: newData })
+        updateWidget({ id, data })
     } else {
         const card = document.createElement('div')
         const header = document.createElement('div')
